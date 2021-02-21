@@ -41,7 +41,7 @@ def word_ladder(start_word, end_word, dictionary_file='words5.dict'):
     for word in f:
         word = word.rstrip()
         dictionary.append(word)
-    if len(start_word) == 0 or  len(start_word) != len(end_word):
+    if len(start_word) == 0 or len(start_word) != len(end_word):
         return None
     if start_word == end_word:
         return stack
