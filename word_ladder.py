@@ -51,13 +51,20 @@ def word_ladder(start_word, end_word, dictionary_file='words5.dict'):
         return None
     while len(list(q)) != 0:
         current_stack = q.popleft()
-        for i, word in enumerate(dictionary):
+        for word in dictionary:
             if _adjacent(current_stack[-1], word):
                 if word == end_word:
                     current_stack.append(word)
                     return current_stack
                 copy_stack = copy(current_stack)
-                copy_stack.append(word)
+                if len(copy_stack) >= 2:
+                    if _adjacent(current_stack[-2], word):
+                        copy_stack.pop()
+                        copy_stack.append(word)
+                    else:
+                        copy_stack.append(word)
+                else:
+                    copy_stack.append(word)
                 q.append(copy_stack)
                 dictionary.remove(word)
     return None
